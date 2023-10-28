@@ -20,7 +20,7 @@ and so cars are close to each other on average."""
 INIT_NUM_OF_CELLS = 150
 INIT_NUM_OF_CARS = 25
 INIT_V_MAX = 5
-INIT_PROBABILITY = 0.2
+INIT_PROBABILITY = 0.15
 INIT_DELAY = 1
 
 fg = {  # fg colors
@@ -72,8 +72,17 @@ def print_help():
     print("====\n")
     print(f"{WIKI}\n")
     print(f"The original model was designed with a cell length of 7.5 m, "
-          f"7,5 m/s and a delay between steps of 1 s ==> 27 km/h (v = 1)"
-          f"v_max = 5h ==> 135 km/h")
+          f"7,5 m/s and a delay between steps of 1 s ==> 27 km/h \n"
+          f"  v_max | km/h  \n"
+          f" -------+------\n"
+          f"    1   |  27\n"
+          f"    2   |  54\n"
+          f"    3   |  81\n"
+          f"    4   |  108\n"
+          f"    5   |  135\n\n"
+          f"A cruise control can significantly reduce the problems of braking too hard or following too closely. This "
+
+          )
     input("\n  ==> ")
     get_parameters()
 
@@ -100,9 +109,9 @@ def get_parameters():
      d - density (number of cars)
      v - v_max (1..5)
      p - probability
-     r - round delay (between each simulation round)
+     r - round delay
      h - help
-     s - start simulation >>> use CNTL-C to stop <<<
+     s - start simulation
      x - exit""")
         answer = input("\n  ==> ").lower().split()
         if len(answer) == 0:
@@ -110,15 +119,13 @@ def get_parameters():
         elif answer[0] in valid_execute_chars:
             match answer[0]:
                 case 's':
-                    print("starting simulation ...")
+                    print("starting simulation, use CNTL-C to stop ...")
                     return variable_dict
                 case 'h':
                     print_help()
                 case 'x':
                     clear()
                     exit("normal program end")
-                case _:
-                    pass
         elif answer[0] in valid_setting_chars and len(answer) == 2:
             if answer[1].isdigit():
                 match answer[0]:
@@ -132,8 +139,6 @@ def get_parameters():
                         variable_dict.update({"probability": int(answer[1])/100})
                     case 'r':
                         variable_dict.update({"delay": float(answer[1])/1000})
-                    case _:
-                        pass
 
 
 if __name__ == "__main__":
