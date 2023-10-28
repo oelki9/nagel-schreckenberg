@@ -8,7 +8,7 @@ __copyright__ = "Copyright 2023"
 __credits__ = ["Kai Nagel", "Michael Schreckenberg"]
 __license__ = ""
 __version__ = "0.0.1"
-__maintainer__ = ""
+__maintainer__ = "GNU General Public License v3.0"
 __email__ = ""
 __status__ = "Development"  # Development, Production
 import random
