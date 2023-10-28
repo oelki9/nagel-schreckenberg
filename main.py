@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""The Nagel–Schreckenberg model is a theoretical model for the simulation of freeway traffic.
+"""
 https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
 A good exercise to learn some python ..."""
 
 __author__ = "Uwe Ressler"
 __copyright__ = "Copyright 2023"
 __credits__ = ["Kai Nagel", "Michael Schreckenberg"]
-__license__ = ""
+__license__ = "GNU General Public License v3.0"
 __version__ = "0.0.1"
-__maintainer__ = "GNU General Public License v3.0"
+__maintainer__ = ""
 __email__ = ""
 __status__ = "Development"  # Development, Production
 import random
@@ -70,8 +70,6 @@ def print_cells(cells):
     """print all cells"""
     print(f"{fg['lightgrey']}>>>", end="")
     for cell in cells:
-        # if cell == MT_CELL:
-        #     print(" ", end="")
         match cell:
             case -1:  # MT_CELL
                 print(" ", end="")
@@ -87,23 +85,21 @@ def print_cells(cells):
                 print(f"{fg['blue']}{cell}", end="")
             case 5:
                 print(f"{fg['lightgreen']}{cell}", end="")
-        # else:
-        #     print(cell, end="")
     print(f"{fg['lightgrey']}>>>")
 
 
 def main():
-    para = get_parameters()  # ok
-    cells = setup(para["num_of_cells"], para["num_of_cars"])  # ok
+    print(fg["green"])
+    para = get_parameters()
+    cells = setup(para["num_of_cells"], para["num_of_cars"])
     while True:
-        cells = accelerate(cells, para["v_max"])  # ok
-        cells = slow_down(cells)  # ok
-        cells = randomize(cells, para["probability"])  # ok
-        cells = move_cars(cells)  # ok
-        print_cells(cells)  # ok
+        cells = accelerate(cells, para["v_max"])
+        cells = slow_down(cells)
+        cells = randomize(cells, para["probability"])
+        cells = move_cars(cells)
+        print_cells(cells)
         time.sleep(para["delay"])
 
 
 if __name__ == '__main__':
-    print(fg["green"])
     main()
